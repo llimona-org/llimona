@@ -1,0 +1,3 @@
+included_key: !include:envvar.yaml
+  key4: 1
+  key5: 2

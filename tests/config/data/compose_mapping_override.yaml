@@ -1,0 +1,4 @@
+included_key: !include:envvar.yaml
+  key2: 1
+  key3: 2
+  key4: !envvar ENV_VAR_NAME_INNER_DATA:default_value

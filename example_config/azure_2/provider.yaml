@@ -1,0 +1,60 @@
+type: azure_openai
+name: azure_2
+display_name: Azure Example 2
+owner_id: 444444-222-333-222 # Not used, just for future purposes
+base_url: !envvar AZURE_OPENAI_2_BASE_URL
+credentials:
+  api_key: !envvar AZURE_OPENAI_2_API_KEY
+services:
+- type: openai_responses
+- type: openai_models
+
+models:
+- name: gpt-4o-mini
+  allowed_services:
+  - openai_responses
+
+sensors:
+  - name: request_count
+    type: request_count
+  - name: request_per_unit_of_time
+    type: request_per_unit_of_time
+    unit_of_time: !timedelta 1m
+  - name: request_per_window_of_time
+    type: request_per_window_of_time
+    cron_spec: "0 * * * * *"
+    tz: "Europe/Madrid"
+  - name: elapsed_time
+    type: elapsed_time
+    priority: 1000
+
+
+
+
+# [16:17] Antonio Gila Garcia
+# AZURE_OPENAI_BASE=https://modelos-test.openai.azure.com
+# AZURE_OPENAI_API_KEY=15a2c803c5764b5d933d2406c0330622
+
+# {
+#     "data": [
+#         {
+#             "id": "azure/gpt-4o-mini",
+#             "object": "model",
+#             "created": 1677610602,
+#             "owned_by": "openai"
+#         },
+#         {
+#             "id": "azure/gpt-5-nano",
+#             "object": "model",
+#             "created": 1677610602,
+#             "owned_by": "openai"
+#         },
+#         {
+#             "id": "azure/text-embedding-ada-002",
+#             "object": "model",
+#             "created": 1677610602,
+#             "owned_by": "openai"
+#         }
+#     ],
+#     "object": "list"
+# }

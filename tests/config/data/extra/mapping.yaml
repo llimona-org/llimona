@@ -1,0 +1,8 @@
+key1: 1
+key2: 2
+submap1:
+  subkey1: value1
+  subkey2: value2
+  submap2:
+    subkey3: value3
+    subkey4: value4

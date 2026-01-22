@@ -1,0 +1,20 @@
+[project]
+name = "llimona-mock-provider"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Alfred", email = "alfred.santacatalinagea@telefonica.com" }
+]
+requires-python = ">=3.14"
+dependencies = []
+
+[build-system]
+requires = ["uv_build>=0.9.26,<0.12.0"]
+build-backend = "uv_build"
+
+[tool.uv.sources]
+llimona = { workspace = true } 
+
+[project.entry-points."llimona.addon"]
+azure_openai = "llimona_mock_provider:addon"

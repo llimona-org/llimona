@@ -1,0 +1,3 @@
+key1: 1
+key2: !envvar ENV_VAR_NAME
+key3: !envvar ENV_VAR_NAME_WITH_DEFAULT:default_value

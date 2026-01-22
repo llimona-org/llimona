@@ -1,0 +1,22 @@
+[project]
+name = "llimona-smart-provider"
+version = "0.1.0"
+description = "Llimona addon that provides smart virtual providers for multi-target request routing."
+readme = "README.md"
+authors = [
+    { name = "Alfred", email = "alfred.santacatalinagea@telefonica.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "llimona",
+]
+
+[build-system]
+requires = ["uv_build>=0.9.26,<0.12.0"]
+build-backend = "uv_build"
+
+[tool.uv.sources]
+llimona = { workspace = true } 
+
+[project.entry-points."llimona.addon"]
+smart_provider = "llimona_smart_provider:addon"

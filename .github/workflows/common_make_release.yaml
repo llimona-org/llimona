@@ -10,7 +10,9 @@ on:
         type: string
 
 permissions:
-  contents: read
+  contents: write
+  id-token: write
+  pull-requests: write
 
 jobs:
   release:
@@ -24,6 +26,7 @@ jobs:
     permissions:
       contents: write
       id-token: write
+      pull-requests: none
 
     outputs:
       version: ${{ steps.define-version.outputs.version }}
@@ -68,6 +71,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+      id-token: none
 
     if:
       github.ref_name == needs.release.outputs.release-ref && inputs.level == 'none'

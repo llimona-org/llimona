@@ -21,7 +21,6 @@ jobs:
 
     environment:
       name: pypi
-      url: https://pypi.org/project/llimona/
 
     outputs:
       version: ${{ steps.define-version.outputs.version }}

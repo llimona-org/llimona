@@ -18,7 +18,8 @@ on:
 permissions:
   pull-requests: write
   contents: write
-
+  id-token: write
+  
 jobs:
   make-release:
     uses: ./.github/workflows/common_make_release.yaml

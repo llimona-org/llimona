@@ -17,6 +17,7 @@ jobs:
 
     environment:
       name: pypi
+      url: https://pypi.org/project/llimona/
 
     permissions:
       contents: write
@@ -46,6 +47,7 @@ jobs:
 
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
+        
           
       - name: Make release
         id: make_release

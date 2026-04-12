@@ -23,6 +23,6 @@ jobs:
 
       - uses: peterjgrainger/action-create-branch@v4.0.0
         env:
-          GITHUB_TOKEN: ${{ secrets.ACTIONS_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ACTIONS_GITHUB_TOKEN_BRANCH }}
         with:
-          branch: 'release/${{ needs.get-version.outputs.release-minor }}'
+          branch: 'refs/heads/release/${{ needs.get-version.outputs.release-minor }}'

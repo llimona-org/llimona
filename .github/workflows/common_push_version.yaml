@@ -48,7 +48,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v8
         with:
-          token: ${{ secrets.ACTIONS_GITHUB_TOKEN }}
+          token: ${{ secrets.ACTIONS_GITHUB_TOKEN_PULL_REQUEST }}
           title: "Bump version to ${{ steps.define-version.outputs.version }}"
           branch: "task/start-version-${{ steps.define-version.outputs.version }}"
           delete-branch: true

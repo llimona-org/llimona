@@ -26,12 +26,14 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.14",
-    "License :: OSI Approved :: Affero General Public License v3 (AGPLv3)",
     "Operating System :: OS Independent",
-    "Typing :: Statically Typed",
-    "Typing :: Type Hints",
+    "Typing :: Typed",
     "Framework :: AsyncIO",
 ]
+
+license = "AGPL-3.0-or-later"
+license-files = ["LICENSE"]
+
 
 [project.scripts]
 llimona = "llimona.cli:llimona"

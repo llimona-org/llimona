@@ -15,14 +15,10 @@ outputs:
   release-ref:
     description: "Release reference"
     value: release/${{ steps.define-version.outputs.release-minor }}
-    
+
 runs:
   using: composite
   steps:
-    - uses: actions/checkout@v6
-      with:
-        fetch-depth: 1
-
     - uses: ./.github/actions/setup-repo
 
     - uses: ./.github/actions/versioning

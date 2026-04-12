@@ -37,6 +37,9 @@ jobs:
       release-ref: ${{ steps.make_release.outputs.release-ref }}
 
     steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
       - uses: ./.github/actions/publishing
         id: make_release
         with:

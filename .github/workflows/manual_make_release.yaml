@@ -44,6 +44,9 @@ jobs:
         id: make_release
         with:
           level: ${{ github.event.inputs.level }}
+          
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
 
   bump-version:
     name: Bump version

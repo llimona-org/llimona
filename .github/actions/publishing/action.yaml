@@ -18,6 +18,7 @@ outputs:
 
 runs:
   using: composite
+
   steps:
     - uses: ./.github/actions/setup-repo
 
@@ -30,9 +31,6 @@ runs:
       shell: bash
       run: |
         uv build
-
-    - name: Publish package distributions to PyPI
-      uses: pypa/gh-action-pypi-publish@release/v1
 
     - name: Make release
       id: make_release

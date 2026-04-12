@@ -9,6 +9,16 @@ on:
         default: "none"
         type: string
 
+      environment:
+        description: "Release environment (e.g. pypi, testpypi, etc.)"
+        required: false
+        default: "pypi"
+        type: string
+
+      pypi-github-token:
+        description: "PyPI Github token"
+        required: true
+        type: string
 jobs:
   release:
     name: Make release
@@ -16,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
 
     environment:
-      name: pypi
+      name: ${{ inputs.environment }}
       url: https://pypi.org/project/llimona/
 
     permissions:
@@ -47,7 +57,7 @@ jobs:
 
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
-        
+
           
       - name: Make release
         id: make_release

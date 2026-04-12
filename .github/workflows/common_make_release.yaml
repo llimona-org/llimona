@@ -9,10 +9,16 @@ on:
         default: "none"
         type: string
 
-permissions:
-  contents: write
-  pull-requests: write
+      environment:
+        description: "Release environment (e.g. pypi, testpypi, etc.)"
+        required: false
+        default: "pypi"
+        type: string
 
+      pypi-github-token:
+        description: "PyPI Github token"
+        required: true
+        type: string
 jobs:
   release:
     name: Make release
@@ -20,8 +26,13 @@ jobs:
     runs-on: ubuntu-latest
 
     environment:
-      name: pypi
+      name: ${{ inputs.environment }}
       url: https://pypi.org/project/llimona/
+
+    permissions:
+      contents: write
+      id-token: write
+      pull-requests: none
 
     outputs:
       version: ${{ steps.define-version.outputs.version }}
@@ -46,6 +57,7 @@ jobs:
 
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
+
           
       - name: Make release
         id: make_release
@@ -62,6 +74,12 @@ jobs:
   bump-version:
     name: Bump version
     needs: release
+
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: none
+
     if:
       github.ref_name == needs.release.outputs.release-ref && inputs.level == 'none'
     uses: ./.github/workflows/common_push_version.yaml

@@ -18,10 +18,49 @@ on:
 permissions:
   pull-requests: write
   contents: write
+  id-token: write
 
 jobs:
   make-release:
-    uses: ./.github/workflows/common_make_release.yaml
-    secrets: inherit
+    name: Make release
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: none
+      contents: write
+      id-token: write
+    environment:
+        name: pypi-manual
+        url: https://pypi.org/project/llimona/  
+    outputs:
+      version: ${{ steps.make_release.outputs.version }}
+      base-release-version: ${{ steps.make_release.outputs.base-release-version }}
+      release-ref: ${{ steps.make_release.outputs.release-ref }}
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+      - uses: ./.github/actions/publishing
+        id: make_release
+        with:
+          level: ${{ github.event.inputs.level }}
+          
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+
+  bump-version:
+    name: Bump version
+    needs: make-release
+
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: none
+
+    if:
+      github.ref_name == needs.make-release.outputs.release-ref && inputs.level == 'none'
+    uses: ./.github/workflows/common_push_version.yaml
     with:
-      level: ${{ inputs.level == 'production' && 'none' || inputs.level }}
+      ref: ${{ github.ref_name }}
+      level: 'patch'
+    secrets: inherit

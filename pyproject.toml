@@ -1,6 +1,6 @@
 [project]
 name = "Llimona"
-version = "0.1.0"
+version = "0.2.0"
 description = "Open and modular framework for building observable LLM gateways with OpenAI-compatible APIs and pluggable providers."
 readme = "README.md"
 authors = [

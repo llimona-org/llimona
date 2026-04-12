@@ -43,7 +43,7 @@ jobs:
       - uses: ./.github/actions/publishing
         id: make_release
         with:
-          level: ${{ github.event.inputs.level }}
+          level: ${{ inputs.level == 'production' && 'none' || inputs.level }}
           
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
@@ -58,7 +58,7 @@ jobs:
       id-token: none
 
     if:
-      github.ref_name == needs.make-release.outputs.release-ref && inputs.level == 'none'
+      github.ref_name == needs.make-release.outputs.release-ref && inputs.level == 'production'
     uses: ./.github/workflows/common_push_version.yaml
     with:
       ref: ${{ github.ref_name }}

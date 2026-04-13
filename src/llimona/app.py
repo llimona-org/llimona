@@ -72,7 +72,7 @@ class Llimona:
         )
 
 
-class BaseService(ABC, LoggerMixin):
+class BaseService(LoggerMixin, ABC):
     TYPE: str
 
     def __init__(

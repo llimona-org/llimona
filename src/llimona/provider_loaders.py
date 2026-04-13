@@ -103,16 +103,19 @@ class ProviderDescDirectoryLoader(LoggerMixin):
         try:
             params['models'] = self.load_models(silence=True)  # type: ignore
         except ValueError:
+            # No models found, continue without them
             pass
 
         try:
             params['services'] = self.load_services(silence=True)  # type: ignore
         except ValueError:
+            # No services found, continue without them
             pass
 
         try:
             params['sensors'] = self.load_sensors(silence=True)  # type: ignore
         except ValueError:
+            # No sensors found, continue without them
             pass
 
         try:

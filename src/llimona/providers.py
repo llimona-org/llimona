@@ -207,7 +207,7 @@ class ProviderType(ComponentDescriptionTypeMixin, BaseProviderDesc):
     registry: ClassVar[ProviderRegistry] = provider_registry
 
 
-class BaseProviderOwned(Generic[TProvider], ABC, LoggerMixin):  # noqa: UP046
+class BaseProviderOwned(LoggerMixin, Generic[TProvider], ABC):  # noqa: UP046
     def __init__(
         self,
         provider: TProvider,

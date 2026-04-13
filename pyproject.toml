@@ -12,7 +12,6 @@ urls = { "Source" = "https://github.com/llimona-org/llimona" }
 requires-python = ">=3.14"
 dependencies = [
     "click>=8.3.1",
-    "litellm>=1.81.7",
     "pydantic>=2.12.5",
     "pydantic-settings>=2.13.0",
     "pydantic-views>=0.3.0",
@@ -151,10 +150,10 @@ pythonpath = ["src"]
 build = "uv build"
 test = "pytest -v -s --junitxml=pytest.xml --cov src --cov-report term-missing --cov-report xml:coverage.xml --cov-fail-under=85 --exitfirst"
 typecheck = "mypy src"
-format = "ruff format src tests"
-"format:check" = "ruff format src tests --check"
-lint = "ruff check src tests"
-"lint:fix" = "ruff check src tests --fix"
+format = "ruff format **/src/**/*.py **/tests/**/*.py"
+"format:check" = "ruff format **/src/**/*.py **/tests/**/*.py --check"
+lint = "ruff check **/src/**/*.py **/tests/**/*.py"
+"lint:fix" = "ruff check **/src/**/*.py **/tests/**/*.py --fix"
 
 [tool.poe.tasks.clean]
 cmd = """
@@ -175,6 +174,7 @@ empty_glob = "null"
 help = "Execute all validations: typecheck, lint, and test"
 sequence = [
     "typecheck",
+    "format:check",
     "lint",
     "test"
 ]

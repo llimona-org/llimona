@@ -49,6 +49,7 @@ jobs:
         id: make_release
         with:
           level: ${{ inputs.level == 'production' && 'none' || inputs.level }}
+
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
 

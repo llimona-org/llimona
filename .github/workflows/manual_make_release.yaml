@@ -29,7 +29,7 @@ jobs:
       contents: write
       id-token: write
     environment:
-        name: pypi-manual
+        name: pypi-${{ inputs.level == 'production' && 'manual' || 'dev' }}
         url: https://pypi.org/project/llimona/  
     outputs:
       version: ${{ steps.make_release.outputs.version }}
@@ -37,6 +37,11 @@ jobs:
       release-ref: ${{ steps.make_release.outputs.release-ref }}
 
     steps:
+      - if: ${{ inputs.level == 'production' && !startsWith(github.ref_name, 'release/') }}
+        name: Check release branch when making production release
+        run: |
+          echo "# :boom::fire: Production releases must be made from a release branch. Please create a branch named release/x.y from main and push it before running this workflow. :fire::boom:" >> $GITHUB_STEP_SUMMARY
+          exit 1
       - uses: actions/checkout@v6
         with:
           fetch-depth: 1
@@ -44,7 +49,6 @@ jobs:
         id: make_release
         with:
           level: ${{ inputs.level == 'production' && 'none' || inputs.level }}
-          
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
 

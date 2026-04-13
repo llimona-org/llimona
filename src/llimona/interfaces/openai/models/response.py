@@ -62,8 +62,6 @@ class ResponseError(BaseModel):
 class Response(BaseModel):
     """The Response object returned by the Responses API."""
 
-    model_config = ConfigDict(extra='allow')
-
     id: str = Field(description='Unique identifier for this response.')
     object: Literal['response'] = Field(default='response')
     status: ResponseStatus = Field(description='Current generation status.')

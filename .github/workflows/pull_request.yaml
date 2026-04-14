@@ -65,9 +65,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}   # Generate a token on Sonarcloud.io, add it to the secrets of this repo with the name SONAR_TOKEN (Settings > Secrets > Actions > add new repository secret)
         with:
           # Additional arguments for the SonarScanner CLI
-          args: 
-            # Unique keys of your project and organization. You can find them in SonarCloud > Information (bottom-left menu)
-            # mandatory
+          args: >
             -Dsonar.projectKey=llimona-org_llimona
             -Dsonar.organization=llimona-org
             -Dsonar.python.coverage.reportPaths=coverage.xml
@@ -75,13 +73,7 @@ jobs:
             -Dsonar.sources=src
             -Dsonar.tests=tests
             -Dsonar.python.version=3.14
-            #-Dsonar.sources=src,.github/workflows,.github/actions,example_config
-            #-Dsonar.tests=tests 
-            # optional. For more info about Code Coverage, please refer to https://docs.sonarcloud.io/enriching/test-coverage/overview/
-            # Comma-separated paths to directories containing main source files.
-            # Comma-separated paths to directories containing test source files.
-            # Adds more detail to both client and server-side analysis logs, activating DEBUG mode for the scanner, and adding client-side environment variables and system properties to the server-side log of analysis report processing.
-            #-Dsonar.verbose= # optional, default is false
+            -Dsonar.verbose=true
           # When you need the analysis to take place in a directory other than the one from which it was launched, default is .
           projectBaseDir: .
 

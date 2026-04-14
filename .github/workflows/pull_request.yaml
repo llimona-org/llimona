@@ -66,13 +66,6 @@ jobs:
         with:
           # Additional arguments for the SonarScanner CLI
           args: >
-            -Dsonar.projectKey=llimona-org_llimona
-            -Dsonar.organization=llimona-org
-            -Dsonar.python.coverage.reportPaths=coverage.xml
-            -Dsonar.python.xunit.reportPath=pytest.xml
-            -Dsonar.sources=src
-            -Dsonar.tests=tests
-            -Dsonar.python.version=3.14
             -Dsonar.verbose=true
           # When you need the analysis to take place in a directory other than the one from which it was launched, default is .
           projectBaseDir: .

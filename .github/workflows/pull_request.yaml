@@ -71,6 +71,10 @@ jobs:
             -Dsonar.projectKey=llimona-org_llimona
             -Dsonar.organization=llimona-org
             -Dsonar.python.coverage.reportPaths=coverage.xml
+            -Dsonar.python.xunit.reportPath=pytest.xml
+            -Dsonar.sources=src
+            -Dsonar.tests=tests
+            -Dsonar.python.version=3.14
             #-Dsonar.sources=src,.github/workflows,.github/actions,example_config
             #-Dsonar.tests=tests 
             # optional. For more info about Code Coverage, please refer to https://docs.sonarcloud.io/enriching/test-coverage/overview/

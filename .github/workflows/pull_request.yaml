@@ -56,6 +56,21 @@ jobs:
           unique-id-for-comment: ${{ matrix.python-version }}
           title: Coverage for Python ${{ matrix.python-version }}
 
+      - name: Analyze with SonarCloud
+
+        # You can pin the exact commit or the version.
+        # uses: SonarSource/sonarcloud-github-action@v2.2.0
+        uses: SonarSource/sonarqube-scan-action@v7.1.0
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}   # Generate a token on Sonarcloud.io, add it to the secrets of this repo with the name SONAR_TOKEN (Settings > Secrets > Actions > add new repository secret)
+        with:
+          # Additional arguments for the SonarScanner CLI
+          args: >
+            -Dsonar.verbose=true
+          # When you need the analysis to take place in a directory other than the one from which it was launched, default is .
+          projectBaseDir: .
+          
+
   success-pr:
     name: Success Pull Request
     if: ${{ always() }}

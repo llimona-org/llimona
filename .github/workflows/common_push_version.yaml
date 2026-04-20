@@ -17,6 +17,10 @@ on:
         required: false
         default: "main"
         type: string
+    secrets:
+      ACTIONS_GITHUB_TOKEN_PULL_REQUEST:
+        description: "GitHub token with permissions to create pull requests"
+        required: true
 
 concurrency:
   group: push-version-${{ inputs.ref }}

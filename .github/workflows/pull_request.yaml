@@ -11,10 +11,6 @@ on:
       - master
       - main
       - release/*
-
-permissions:
-  contents: read
-  pull-requests: write
   
 concurrency:
   group: pr-code-${{ github.base_ref }}-${{ github.ref_name }}
@@ -26,6 +22,10 @@ jobs:
   validate:
     name: Check Python style and run tests
 
+    permissions:
+      contents: read
+      pull-requests: write
+
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -35,7 +35,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
-          fetch-depth: 1
+          fetch-depth: 0
           
       - uses: ./.github/actions/setup-repo
         with:
@@ -57,17 +57,9 @@ jobs:
           title: Coverage for Python ${{ matrix.python-version }}
 
       - name: Analyze with SonarCloud
-
-        # You can pin the exact commit or the version.
-        # uses: SonarSource/sonarcloud-github-action@v2.2.0
         uses: SonarSource/sonarqube-scan-action@v7.1.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}   # Generate a token on Sonarcloud.io, add it to the secrets of this repo with the name SONAR_TOKEN (Settings > Secrets > Actions > add new repository secret)
-        with:
-          # Additional arguments for the SonarScanner CLI
-          args: >
-            -Dsonar.verbose=true
-          
 
   success-pr:
     name: Success Pull Request

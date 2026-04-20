@@ -33,7 +33,6 @@ class Models(ABC):
     @abstractmethod
     async def list(self, request: Context[ListModelsRequest]) -> AsyncIterable[Model]:
         raise NotImplementedError()
-        yield
 
     @abstractmethod
     async def retrieve(self, request: Context[ModelRequest]) -> Model:

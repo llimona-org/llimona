@@ -1,11 +1,10 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Pull request checks
-
+name: SonarCloud analysis
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the develop branch
 on:
-  pull_request:
+  push:
     branches:
       - develop
       - master
@@ -17,14 +16,14 @@ permissions:
   pull-requests: write
   
 concurrency:
-  group: pr-code-${{ github.base_ref }}-${{ github.ref_name }}
+  group: push-sonar-${{ github.base_ref }}-${{ github.ref_name }}
   cancel-in-progress: true
 
   # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 
 jobs:
   validate:
-    name: Check Python style and run tests
+    name: Run tests and analyze with SonarCloud
 
     runs-on: ubuntu-latest
     strategy:
@@ -46,7 +45,7 @@ jobs:
           uv sync --all-packages --all-groups
 
       - name: Run checks
-        run: poe validate
+        run: poe test
 
       - name: Coverage comment
         uses: MishaKav/pytest-coverage-comment@main
@@ -69,19 +68,3 @@ jobs:
             -Dsonar.verbose=true
           # When you need the analysis to take place in a directory other than the one from which it was launched, default is .
           projectBaseDir: src/
-          
-
-  success-pr:
-    name: Success Pull Request
-    if: ${{ always() }}
-    needs:
-      - validate
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check Job Status status and fail if they are red
-        if: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')}}
-        run: |
-          echo "Fail!"
-          exit 1
-      - name: Success
-        run: echo "Success!"

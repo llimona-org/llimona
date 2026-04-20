@@ -86,4 +86,3 @@ jobs:
     with:
       ref: ${{ github.ref_name }}
       level: 'patch'
-    secrets: inherit

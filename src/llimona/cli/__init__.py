@@ -18,6 +18,8 @@ from llimona.cli.providers import providers
 )
 @click.pass_context
 def llimona(ctx: click.Context, log_stdout: bool, log_level: str):
+    """Main entry point for the Llimona CLI."""
+
     from logging import CRITICAL, DEBUG, ERROR, INFO, WARNING, StreamHandler, basicConfig, getLogger
 
     level = {
@@ -41,6 +43,10 @@ def llimona(ctx: click.Context, log_stdout: bool, log_level: str):
 )
 @click.pass_context
 def app(ctx: click.Context, config_file: Path):
+    """
+    Main entry point for running a Llimona application.
+    The application is configured using a YAML file specified by the --config-file option.
+    """
     import yaml
 
     from ..config.app import AppBuilder, AppConfig

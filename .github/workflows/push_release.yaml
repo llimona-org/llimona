@@ -31,3 +31,5 @@ jobs:
     with:
       level: 'minor'
       ref: main
+    secrets:
+      ACTIONS_GITHUB_TOKEN_PULL_REQUEST: ${{ secrets.ACTIONS_GITHUB_TOKEN_PULL_REQUEST }}

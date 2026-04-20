@@ -3,7 +3,8 @@ name: Stabilize Release (create release branch)
 on:
   workflow_dispatch:
 
-
+permissions:
+  contents: read
 
 jobs:
   get-version:

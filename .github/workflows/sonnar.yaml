@@ -47,14 +47,6 @@ jobs:
       - name: Run checks
         run: poe test
 
-      - name: Coverage comment
-        uses: MishaKav/pytest-coverage-comment@main
-        with:
-          pytest-xml-coverage-path: ./coverage.xml
-          junitxml-path: ./pytest.xml
-          unique-id-for-comment: ${{ matrix.python-version }}
-          title: Coverage for Python ${{ matrix.python-version }}
-
       - name: Analyze with SonarCloud
 
         # You can pin the exact commit or the version.

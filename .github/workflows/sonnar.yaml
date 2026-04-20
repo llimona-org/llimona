@@ -66,5 +66,3 @@ jobs:
           # Additional arguments for the SonarScanner CLI
           args: >
             -Dsonar.verbose=true
-          # When you need the analysis to take place in a directory other than the one from which it was launched, default is .
-          projectBaseDir: src/

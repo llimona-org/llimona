@@ -190,14 +190,13 @@ uv sync --group dev
 ### Run tests
 
 ```bash
-uv run pytest
+poe test
 ```
 
 ### Lint and format
 
 ```bash
-uv run ruff check .
-uv run ruff format .
+poe fix
 ```
 
 ## Branching and Versioning

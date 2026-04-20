@@ -30,4 +30,3 @@ jobs:
     with:
       level: ${{ inputs.level }}
       ref: ${{ inputs.ref }}
-    secrets: inherit

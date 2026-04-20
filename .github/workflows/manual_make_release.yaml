@@ -15,11 +15,6 @@ on:
           - alpha
           - dev
 
-permissions:
-  pull-requests: write
-  contents: write
-  id-token: write
-
 jobs:
   make-release:
     name: Make release
@@ -68,4 +63,3 @@ jobs:
     with:
       ref: ${{ github.ref_name }}
       level: 'patch'
-    secrets: inherit

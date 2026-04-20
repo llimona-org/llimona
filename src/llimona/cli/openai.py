@@ -12,11 +12,13 @@ if TYPE_CHECKING:
 
 @click.group(name='openai')
 def openai():
+    """Group for OpenAI-related commands."""
     pass
 
 
 @openai.group(name='responses')
 def responses():
+    """Group for OpenAI response-related commands."""
     pass
 
 
@@ -26,6 +28,8 @@ def responses():
 @click.option('--stream', is_flag=True)
 @pass_app
 def responses_create(app: Llimona, model: str, prompt: str, stream: bool):
+    """Create a response using the OpenAI provider interface."""
+
     async def action():
         from llimona.interfaces.openai.models.api_responses import CreateResponse
 
@@ -50,6 +54,7 @@ def responses_create(app: Llimona, model: str, prompt: str, stream: bool):
 
 @openai.group(name='models')
 def models():
+    """Group for OpenAI model-related commands."""
     pass
 
 
@@ -68,6 +73,8 @@ def models():
 )
 @pass_app
 def models_list(app: Llimona, provider: str | None = None, actor_id: str | None = None, remote: bool = False):
+    """List OpenAI models using the OpenAI provider interface."""
+
     async def action():
         async for model in app.openai_models.list(provider_name=provider, remote=remote):
             click.echo(model)

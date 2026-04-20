@@ -31,7 +31,7 @@ class Models(ABC):
     TYPE = 'openai_models'
 
     @abstractmethod
-    async def list(self, request: Context[ListModelsRequest]) -> AsyncIterable[Model]:
+    def list(self, request: Context[ListModelsRequest]) -> AsyncIterable[Model]:
         raise NotImplementedError()
 
     @abstractmethod

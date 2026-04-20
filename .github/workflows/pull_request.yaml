@@ -66,6 +66,7 @@ jobs:
     if: ${{ always() }}
     needs:
       - validate
+    permissions: {}
     runs-on: ubuntu-latest
     steps:
       - name: Check Job Status status and fail if they are red

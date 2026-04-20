@@ -15,7 +15,6 @@ dependencies = [
     "pydantic>=2.12.5",
     "pydantic-settings>=2.13.0",
     "pydantic-views>=0.3.0",
-    "pymongo>=4.16.0",
     "pyyaml>=6.0.3",
 ]
 

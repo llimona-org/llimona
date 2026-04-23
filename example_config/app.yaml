@@ -1,0 +1,5 @@
+provider_addons:
+  - azure_openai
+provider_loaders:
+  - type: autodiscovery_dirs
+    src: !path .

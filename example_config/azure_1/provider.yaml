@@ -1,0 +1,14 @@
+type: azure_openai
+name: azure_1
+display_name: Azure Example 1
+owner_id: 444444-222-333-222 # Not used, just for future purposes
+base_url: !envvar AZURE_OPENAI_1_BASE_URL
+credentials:
+  api_key: !envvar AZURE_OPENAI_1_API_KEY
+services:
+- type: openai_responses
+- type: openai_models
+models:
+- name: gpt-4o-mini
+  allowed_services:
+  - openai_responses

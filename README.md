@@ -1,9 +1,22 @@
+
+
+<img style="display: block; margin: auto; float: left" src="docs/brand/logo/llimona.svg" height=100/>
+
 # Llimona
+
+[![PyPI](https://img.shields.io/pypi/v/llimona.svg)](https://pypi.org/project/llimona/)
+[![Python Version](https://img.shields.io/pypi/pyversions/llimona.svg)](https://pypi.org/project/llimona/)
+[![License](https://img.shields.io/badge/license-AGPL%203.0-blue.svg)](LICENSE)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=llimona-org_llimona&metric=alert_status)](https://sonarcloud.io/dashboard?id=llimona-org_llimona)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=llimona-org_llimona&metric=coverage)](https://sonarcloud.io/dashboard?id=llimona-org_llimona)
 
 Llimona is an open and modular Python framework for building production-ready LLM gateways.
 It provides OpenAI-compatible APIs, provider-aware routing, and an extensible plugin model for integrating multiple backends behind a single interface.
 
 By keeping providers as addons, Llimona stays lightweight at its core while enabling deployments to include only the integrations, policies, and observability components they actually need.
+
+> [!NOTE]  
+> `Llimona` it the catalan word for lemon.
 
 ## Key Features
 
@@ -25,22 +38,16 @@ By keeping providers as addons, Llimona stays lightweight at its core while enab
 
 ## Installation
 
-### Install dependencies for local development
-
-```bash
-uv sync
-```
-
 ### Install the core package
 
 ```bash
-uv pip install .
+pip install llimona
 ```
 
 ### Install an addon package
 
 ```bash
-uv pip install ./addons/llimona_azure_openai
+pip install llimona-azure-openai
 ```
 
 ## Quick Start
@@ -81,7 +88,7 @@ models:
 ### 3) Run a request
 
 ```bash
-uv run llimona app --config-file example_config/app.yaml openai responses create azure_1/gpt-4o-mini "Hello" --stream
+llimona app --config-file example_config/app.yaml openai responses create azure_1/gpt-4o-mini "Hello" --stream
 ```
 
 ### 4) Observe sensor metrics

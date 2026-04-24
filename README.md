@@ -16,7 +16,7 @@ It provides OpenAI-compatible APIs, provider-aware routing, and an extensible pl
 By keeping providers as addons, Llimona stays lightweight at its core while enabling deployments to include only the integrations, policies, and observability components they actually need.
 
 > [!NOTE]  
-> `Llimona` it the catalan word for lemon.
+> `Llimona` is the catalan word for lemon.
 
 ## Key Features
 
